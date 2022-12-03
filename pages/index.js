@@ -57,7 +57,7 @@ const Home = () => {
                <Button
                   disabled={minting}
                   auto
-                  onClick={() => calcSubMint}
+                  onClick={calcSubMint}
                   flat
                   className="rounded-2xl font-extrabold text-xl bg-gray-500 px-4 py-2 text-white hover:bg-gray-300"
                 >
@@ -67,7 +67,7 @@ const Home = () => {
                   disabled={minting}
                   bordered
                   auto
-                  onClick={() => handleMinting}
+                  onClick={handleMinting}
                   color='warning'
                 >
                  <Text b color="warning" size={18}>Mint {mintAmount}</Text> 
@@ -76,7 +76,7 @@ const Home = () => {
                   disabled={minting}
                   auto
                   flat
-                  onClick={() => calcAddMint}
+                  onClick={calcAddMint}
                   className="rounded-2xl font-extrabold text-xl bg-gray-500 px-4 py-2 text-white hover:bg-gray-300"
                 >
                   +
