@@ -154,7 +154,6 @@ export const ConnectWalletProvider = ({ children }) => {
     await tx.wait();
     setIsminting(false);
     setAmount(0);
-    setTotalCost(0);
     let supply = await contract.totalSupply();
     setSupply(parseInt(supply));
       }
