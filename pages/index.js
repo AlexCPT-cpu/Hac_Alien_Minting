@@ -40,7 +40,7 @@ const Home = () => {
         <div className="mt-20 px-4 py-4 flex-1">
           <div className="w-auto rounded-lg overflow-hidden shadow-xl">
             <div className="bg-gradient-to-b from-gray-900 to-[#11290c]">
-              <Image
+              <img
                 priority
                 src="/alien.gif"
                 width={140}
