@@ -10,21 +10,14 @@ const Home = () => {
 
   const connectContext = useContext(WalletConnectContext)
 
-  const { ConnectWallet, account, DisconnectWallet, cost, isMinting : minting, mint, supply, setNotification, notification } = connectContext
+  const { ConnectWallet, account, DisconnectWallet, cost, isMinting : minting, mint, supply, totalCost, calcAddMint, calcSubMint } = connectContext
 
   const [mintAmount, setMintAmount] = useState(0);
-  const [totalCost, setTotalCost] = useState(0)
-
-  useEffect((
-    () => {
-      let c = Number(cost * mintAmount)
-      setTotalCost(c.toFixed(2))}
-  ), [mintAmount])
 
 
   const handleMinting = async () => {
        
-         await mint(mintAmount) 
+        mint(mintAmount) 
          };
 
   if (account == null) {
@@ -64,7 +57,7 @@ const Home = () => {
                <Button
                   disabled={minting}
                   auto
-                  onClick={() => setMintAmount((prev) => (prev -= 1))}
+                  onClick={() => calcSubMint}
                   flat
                   className="rounded-2xl font-extrabold text-xl bg-gray-500 px-4 py-2 text-white hover:bg-gray-300"
                 >
@@ -74,7 +67,7 @@ const Home = () => {
                   disabled={minting}
                   bordered
                   auto
-                  onClick={handleMinting}
+                  onClick={() => handleMinting}
                   color='warning'
                 >
                  <Text b color="warning" size={18}>Mint {mintAmount}</Text> 
@@ -83,7 +76,7 @@ const Home = () => {
                   disabled={minting}
                   auto
                   flat
-                  onClick={() => setMintAmount((prev) => (prev += 1))}
+                  onClick={() => calcAddMint}
                   className="rounded-2xl font-extrabold text-xl bg-gray-500 px-4 py-2 text-white hover:bg-gray-300"
                 >
                   +
