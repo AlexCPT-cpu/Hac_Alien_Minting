@@ -23,17 +23,9 @@ const Home = () => {
 
 
   const handleMinting = async () => {
-    
-     setNotification(toast()); 
-      try {
-         await mint(mintAmount)
-    }  catch (ex) {
-      toast.error("Whops something went wrong!", {
-        id: notification,
-      });
-      console.log("contract call failure", ex);
-    }
-  };
+       
+         await mint(mintAmount) 
+         };
 
   if (account == null) {
     return <Login />
