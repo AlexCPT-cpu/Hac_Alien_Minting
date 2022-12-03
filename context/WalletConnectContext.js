@@ -129,24 +129,13 @@ export const ConnectWalletProvider = ({ children }) => {
       };
 
       const mint = async (mintAmount) => {
-        toast.loading("Minting your NFTs...")
         setIsminting(true)
         const price = Number(cost) * mintAmount
-        if (bal < price) return
-        try {
         const value = ethers.utils.parseEther(price.toString())
         let tx = await contract.mint(addr, mintAmount, {value: value})
         const rcpt = await tx.wait(1)
         setIsminting(false)
         setReceipt(rcpt)
-        toast.success(`Minted ${mintAmount} NFTs Successfully`, {
-          id: notification,})
-        } catch(ex) {
-          console.error(ex)
-          toast.success(`Minted ${mintAmount} NFTs Successfully`, {
-            id: notification,
-          })
-        }
       }
       return (
         <WalletConnectContext.Provider
