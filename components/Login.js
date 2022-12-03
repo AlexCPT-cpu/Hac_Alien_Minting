@@ -9,7 +9,7 @@ const Login = () => {
     const { ConnectWallet } = connectContext
   return (
     <div className='flex min-h-screen flex-col items-center justify-center py-2 bg-[#141313]'>
-       <Button size="xl" auto bordered flat color='warning' onClick={ConnectWallet}>
+       <Button size="xl" auto bordered color='warning' onClick={ConnectWallet}>
          Connect Wallet
        </Button>
      </div>
