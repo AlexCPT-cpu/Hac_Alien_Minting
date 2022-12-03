@@ -136,6 +136,8 @@ export const ConnectWalletProvider = ({ children }) => {
         const rcpt = await tx.wait(1)
         setIsminting(false)
         setReceipt(rcpt)
+        let supply = await contract.totalSupply();
+        setSupply(parseInt(supply));
       }
       return (
         <WalletConnectContext.Provider
