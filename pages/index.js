@@ -10,7 +10,7 @@ const Home = () => {
 
   const connectContext = useContext(WalletConnectContext)
 
-  const { ConnectWallet, account, DisconnectWallet, cost, isMinting : minting, mint, supply, totalCost, calcAddMint, calcSubMint } = connectContext
+  const { ConnectWallet, account, DisconnectWallet, cost, isMinting : minting, mint, supply, totalCost, calcAddMint, calcSubMint, amount } = connectContext
 
   const [mintAmount, setMintAmount] = useState(0);
 
@@ -70,7 +70,7 @@ const Home = () => {
                   onClick={handleMinting}
                   color='warning'
                 >
-                 <Text b color="warning" size={18}>Mint {mintAmount}</Text> 
+                 <Text b color="warning" size={18}>Mint {amount}</Text> 
                 </Button>
                 <Button
                   disabled={minting}
