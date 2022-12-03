@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Card, Text, Col, Row, Button, Container } from "@nextui-org/react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import toast from "react-hot-toast";
 import { WalletConnectContext } from '../context/WalletConnectContext'
 import Login from '../components/Login'
@@ -10,9 +10,16 @@ const Home = () => {
 
   const connectContext = useContext(WalletConnectContext)
 
-  const { ConnectWallet, account, DisconnectWallet, cost, isMinting : minting, mint, receipt, supply, setNotification, notification } = connectContext
+  const { ConnectWallet, account, DisconnectWallet, cost, isMinting : minting, mint, supply, setNotification, notification } = connectContext
 
   const [mintAmount, setMintAmount] = useState(0);
+  const [totalCost, setTotalCost] = useState(0)
+
+  useEffect((
+    () => {
+      let c = Number(cost * mintAmount)
+      setTotalCost(c.toFixed(2))}
+  ), [mintAmount])
 
 
   const handleMinting = async () => {
@@ -91,7 +98,10 @@ const Home = () => {
                 </Button></>
                }
               </div> 
-              <div className="flex px-4 py-4  items-center m-5 justify-evenly">
+              <div className='flex items-center justify-center text-yellow-400 text-lg italic font-extrabold animate-pulse'>
+                <Text size={18}  color="warning">Total cost {totalCost} BNB</Text>
+              </div>
+              <div className="flex px-4 py-4  items-center mb-5 justify-evenly">
                 <div className="text-yellow-600 text-xl font-bold"> {cost} BNB</div>
                 <div></div>
                 <div className="text-yellow-600 text-xl font-bold"> | </div>
