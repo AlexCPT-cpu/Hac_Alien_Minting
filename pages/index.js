@@ -15,11 +15,6 @@ const Home = () => {
   const [mintAmount, setMintAmount] = useState(0);
 
 
-  const handleMinting = async () => {
-       
-        mint(mintAmount) 
-         };
-
   if (account == null) {
     return <Login />
   } else {
@@ -67,7 +62,7 @@ const Home = () => {
                   disabled={minting}
                   bordered
                   auto
-                  onClick={handleMinting}
+                  onClick={mint}
                   color='warning'
                 >
                  <Text b color="warning" size={18}>Mint {amount}</Text> 
