@@ -143,9 +143,9 @@ export const ConnectWalletProvider = ({ children }) => {
     setAmount( prev => prev -= 1);
   };
 
-      const mint = async (mintAmount) => {
+      const mint = async () => {
         
-            let tc = Number(cost) * mintAmount;
+            let tc = Number(cost) * amount;
     setTotalCost(tc);
     let tx = await contract.mint(addr, mintAmount, {
       value: ethers.utils.parseEther(totalCost.toString()),
