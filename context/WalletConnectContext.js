@@ -131,13 +131,13 @@ export const ConnectWalletProvider = ({ children }) => {
       };
   
     const calcAddMint = async () => {
-    setAmount((amount += 1));
+    setAmount( prev => prev += 1);
     let tc = Number(cost) * amount;
     setTotalCost(tc.toFixed(3));
   };
 
   const calcSubMint = async () => {
-    setAmount((amount -= 1));
+    setAmount( prev => prev -= 1);
     let tc = Number(cost) * amount;
     setTotalCost(tc.toFixed(3));
   };
@@ -171,7 +171,9 @@ export const ConnectWalletProvider = ({ children }) => {
             notification,
             setNotification,
             amount,
-            totalCost
+            totalCost,
+            calcAddMint,
+            calcSubMint
           }} >
           {children}
         </WalletConnectContext.Provider>
