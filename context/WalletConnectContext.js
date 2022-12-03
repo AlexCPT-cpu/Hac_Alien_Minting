@@ -32,8 +32,8 @@ export const ConnectWalletProvider = ({ children }) => {
     const [supply, setSupply] = useState()
     const [bal, setBal] = useState()
     const [notification, setNotification] = useState()
-    const [amount, setAmount] = useState
-    const [totalCost, setTotalCost] = useState
+    const [amount, setAmount] = useState()
+    const [totalCost, setTotalCost] = useState()
 
     useEffect(() => {
         const connectWalletOnPageLoad = async () => {
