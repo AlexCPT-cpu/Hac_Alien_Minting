@@ -59,6 +59,11 @@ export const ConnectWalletProvider = ({ children }) => {
         connectWalletOnPageLoad()
       },[])
   
+  useEffect(() => {
+    let tc = Number(cost) * amount;
+    setTotalCost(tc.toFixed(3))
+  }, [amount])
+  
     const isConnected = () => {
       account != null ? true : false;
     };
@@ -132,14 +137,10 @@ export const ConnectWalletProvider = ({ children }) => {
   
     const calcAddMint = async () => {
     setAmount( prev => prev += 1);
-    let tc = Number(cost) * amount;
-    setTotalCost(tc.toFixed(3));
   };
 
   const calcSubMint = async () => {
     setAmount( prev => prev -= 1);
-    let tc = Number(cost) * amount;
-    setTotalCost(tc.toFixed(3));
   };
 
       const mint = async (mintAmount) => {
