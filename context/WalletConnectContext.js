@@ -32,6 +32,8 @@ export const ConnectWalletProvider = ({ children }) => {
     const [supply, setSupply] = useState()
     const [bal, setBal] = useState()
     const [notification, setNotification] = useState()
+    const [amount, setAmount] = useState
+    const [totalCost, setTotalCost] = useState
 
     useEffect(() => {
         const connectWalletOnPageLoad = async () => {
@@ -127,17 +129,33 @@ export const ConnectWalletProvider = ({ children }) => {
           console.log(ex);
         }
       };
+  
+    const calcAddMint = async () => {
+    setAmount((amount += 1));
+    let totalCost = Number(cost) * amount;
+    setTotalCost(totalCost.toFixed(3));
+  };
+
+  const calcSubMint = async () => {
+    setAmount((amount -= 1));
+    let totalCost = Number(cost) * amount;
+    setTotalCost(totalCost.toFixed(3));
+  };
 
       const mint = async (mintAmount) => {
-        setIsminting(true)
-        const price = Number(cost) * mintAmount
-        const value = ethers.utils.parseEther(price.toString())
-        let tx = await contract.mint(addr, mintAmount, {value: value})
-        const rcpt = await tx.wait(1)
-        setIsminting(false)
-        setReceipt(rcpt)
-        let supply = await contract.totalSupply();
-        setSupply(parseInt(supply));
+        
+            let totalCost = Number(cost) * mintAmount;
+    setTotalCost(totalCost);
+    let tx = await contract.mint(addr, mintAmount, {
+      value: ethers.utils.parseEther(totalCost.toString()),
+    });
+    setIsminting(true);
+    await tx.wait();
+    setIsminting(false);
+    setAmount(0);
+    setTotalCost(0);
+    let supply = await contract.totalSupply();
+    setSupply(parseInt(supply));
       }
       return (
         <WalletConnectContext.Provider
@@ -151,7 +169,9 @@ export const ConnectWalletProvider = ({ children }) => {
             receipt,
             supply,
             notification,
-            setNotification
+            setNotification,
+            amount,
+            totalCost
           }} >
           {children}
         </WalletConnectContext.Provider>
